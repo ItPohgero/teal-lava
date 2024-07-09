@@ -1,56 +1,42 @@
 import React, { PropsWithChildren } from 'react';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
+import { If, Then } from 'react-if';
 
 const { Header, Content, Sider } = Layout;
 
-const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
+export type TealMainLayoutType = {
+    CompanyList?: { label: string, value: string }[]
+    MenuModule?: MenuProps['items']
+    MenuSideBar?: MenuProps['items']
+}
 
-const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-    (icon, index) => {
-        const key = String(index + 1);
-
-        return {
-            key: `sub${key}`,
-            icon: React.createElement(icon),
-            label: `subnav ${key}`,
-
-            children: new Array(4).fill(null).map((_, j) => {
-                const subKey = index * 4 + j + 1;
-                return {
-                    key: subKey,
-                    label: `option${subKey}`,
-                };
-            }),
-        };
-    },
-);
-
-const TealMainLayout: React.FC<PropsWithChildren> = (props) => {
+const TealMainLayout: React.FC<PropsWithChildren<TealMainLayoutType>> = (props) => {
     return (
         <Layout>
-            <Header style={{ display: 'flex', alignItems: 'center' }}>
-                <div className="demo-logo" />
+            <Header style={{ display: 'flex', alignItems: 'center', background: 'white' }}>
+                <If condition={!!props?.CompanyList}>
+                    <Then>
+                        <div>
+                            company
+                        </div>
+                    </Then>
+                </If>
                 <Menu
-                    theme="dark"
                     mode="horizontal"
                     defaultSelectedKeys={['2']}
-                    items={items1}
+                    items={props?.MenuModule}
                     style={{ flex: 1, minWidth: 0 }}
                 />
             </Header>
             <Layout>
-                <Sider width={200} style={{ background: '#fff' }}>
+                <Sider width={200}>
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         style={{ height: '100%', borderRight: 0 }}
-                        items={items2}
+                        items={props?.MenuSideBar}
                     />
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
