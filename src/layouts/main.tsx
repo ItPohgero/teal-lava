@@ -2,16 +2,36 @@ import React, { PropsWithChildren } from 'react';
 import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import { If, Then } from 'react-if';
+import { Icon } from '@iconify-icon/react';
 
 const { Header, Content, Sider } = Layout;
+
+interface MenuItem {
+    id: string;
+    key?: string;
+    title: string;
+    icon?: string;
+    children?: MenuItem[] | null;
+    type?: string;
+}
 
 export type TealMainLayoutType = {
     CompanyList?: { label: string, value: string }[]
     MenuModule?: MenuProps['items']
-    MenuSideBar?: MenuProps['items']
+    MenuSideBar?: MenuItem[]
 }
 
+const MapMenuItems = (items: MenuItem[]): MenuProps['items'] => {
+    return items.map((item) => ({
+        key: item.key ?? item.id,
+        label: item.title,
+        icon: item.icon ? <Icon icon={item.icon} /> : undefined,
+        children: item.children ? MapMenuItems(item.children) : undefined,
+    })) as MenuProps['items'];
+};
+
 const TealMainLayout: React.FC<PropsWithChildren<TealMainLayoutType>> = (props) => {
+    const MenuSideBar: MenuProps['items'] = props.MenuSideBar ? MapMenuItems(props.MenuSideBar) : [];
     return (
         <Layout>
             <Header style={{ display: 'flex', alignItems: 'center', background: 'white' }}>
@@ -36,7 +56,7 @@ const TealMainLayout: React.FC<PropsWithChildren<TealMainLayoutType>> = (props) 
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         style={{ height: '100%', borderRight: 0 }}
-                        items={props?.MenuSideBar}
+                        items={MenuSideBar}
                     />
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
