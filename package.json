@@ -1,6 +1,6 @@
 {
   "name": "teal-lava",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^6.4.6",
@@ -34,7 +34,8 @@
     "build:tsup": "tsup",
     "up:without-test": "react-scripts build && tsup",
     "up": "react-scripts build && react-scripts test && tsup",
-    "local-update": "yarn build:tsup && yalc publish",
+    "local-push": "yarn build:tsup && yalc push",
+    "local-publish": "yarn build:tsup && yalc publish",
     "force:push": "git add . && git commit -m \" up\" && git push"
   },
   "eslintConfig": {
