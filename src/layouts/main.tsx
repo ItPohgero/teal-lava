@@ -33,7 +33,7 @@ const MapMenuItems = (items: MenuItem[]): MenuProps['items'] => {
 const TealMainLayout: React.FC<PropsWithChildren<TealMainLayoutType>> = (props) => {
     const MenuSideBar: MenuProps['items'] = props.MenuSideBar ? MapMenuItems(props.MenuSideBar) : [];
     return (
-        <Layout>
+        <Layout style={{height: '100vh'}}>
             <Header style={{ display: 'flex', alignItems: 'center', background: 'white' }}>
                 <If condition={!!props?.CompanyList}>
                     <Then>
@@ -59,7 +59,7 @@ const TealMainLayout: React.FC<PropsWithChildren<TealMainLayoutType>> = (props) 
                         items={MenuSideBar}
                     />
                 </Sider>
-                <Layout style={{ padding: '0 24px 24px' }}>
+                <Layout style={{ padding: '24px' }}>
                     <Content
                         style={{
                             padding: 24,
