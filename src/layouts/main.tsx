@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Layout, Menu } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 
@@ -31,10 +31,6 @@ const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOu
 );
 
 const TealMainLayout: React.FC<PropsWithChildren> = (props) => {
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
-
     return (
         <Layout>
             <Header style={{ display: 'flex', alignItems: 'center' }}>
@@ -48,7 +44,7 @@ const TealMainLayout: React.FC<PropsWithChildren> = (props) => {
                 />
             </Header>
             <Layout>
-                <Sider width={200} style={{ background: colorBgContainer }}>
+                <Sider width={200} style={{ background: '#fff' }}>
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}
@@ -58,21 +54,16 @@ const TealMainLayout: React.FC<PropsWithChildren> = (props) => {
                     />
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb>
                     <Content
                         style={{
                             padding: 24,
                             margin: 0,
                             minHeight: 280,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG,
+                            background: '#fff',
+                            borderRadius: 8,
                         }}
                     >
-                        {props?.children}
+                        {props.children}
                     </Content>
                 </Layout>
             </Layout>

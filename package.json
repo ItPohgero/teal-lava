@@ -1,6 +1,6 @@
 {
   "name": "teal-lava",
-  "version": "0.1.2",
+  "version": "0.1.6",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^6.4.6",

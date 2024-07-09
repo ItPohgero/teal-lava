@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from '../components';
 const meta = {
-    title: 'NIU/Action/Checkbox',
+    title: 'TealLava/Action/Checkbox',
     component: Checkbox,
     tags: ['autodocs'],
     argTypes: {},

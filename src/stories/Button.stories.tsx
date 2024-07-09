@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../components';
 const meta = {
-    title: 'NIU/Action/Button',
+    title: 'TealLava/Action/Button',
     component: Button,
     tags: ['autodocs'],
     argTypes: {

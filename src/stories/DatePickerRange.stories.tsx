@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DatePickerRange } from '../components';
 const meta = {
-    title: 'NIU/DatePicker/Range',
+    title: 'TealLava/DatePicker/Range',
     component: DatePickerRange,
     tags: ['autodocs'],
     argTypes: {
